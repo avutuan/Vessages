@@ -1,7 +1,7 @@
 import sqlite3
 
 def create_connection():
-    return sqlite3.connect('users.db')
+    return sqlite3.connect('server/users.db')
 
 def create_table():
     conn = create_connection()
@@ -78,3 +78,8 @@ def logout_user(username):
     
     conn.close()
     return "Logout successful"
+
+if __name__ == "__main__":
+    create_table()
+    
+    print(register_user("admin", "admin"))

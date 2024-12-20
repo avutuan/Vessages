@@ -16,13 +16,26 @@ def handle_client(client_socket, client_address):
                 break
             print(f"[{client_address}] {message}")
             
-            # Process message here (e.g. send to another client)
-            response = "Message received."
+            command, *args = message.split()
+            if command == "REGISTER":
+                response = register_user(*args)
+            elif command == "LOGIN":
+                response = login_user(*args)
+            elif command == "LOGOUT":
+                response = logout_user(*args)
+            elif command == "WHO":
+                response = get_online_users()
+            elif command == "SEND":
+                response = send_message(*args)
+            else:
+                response = "Invalid command"
+            
             client_socket.send(response.encode('utf-8'))
-    except ConnectionResetError:
-        print(f"[DISCONNECTED] {client_address}")
+    except Exception as e:
+        print(f"[ERROR] {client_address} disconnected: {e}")
     finally:
         client_socket.close()
+        
         
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
