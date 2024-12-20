@@ -63,9 +63,13 @@ def get_online_users():
         SELECT username FROM users WHERE status = 'online'
     ''')
     users = c.fetchall()
+    if users:
+        response = f"{', '.join([user[0] for user in users])}"
+    else:
+        response = "No online users"
     
     conn.close()
-    return users
+    return response
 
 def logout_user(username):
     conn = create_connection()
