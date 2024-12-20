@@ -38,5 +38,5 @@ The following **required** functionality is completed:
   - [ ] Messages are displayed with a sender's username and timestamp
 - [ ] **Database/File Storage**
   - [ ] **File schema includes a users object that contains fields for a username, password, and status**
-  - [ ] **File is updated in real-time for user registration and login attempts
+  - [ ] **File is updated in real-time for user registration and login attempts**
   - [ ] File can be backed up and restored without data loss
